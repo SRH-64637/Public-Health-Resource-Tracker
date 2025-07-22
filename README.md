@@ -2,81 +2,112 @@
 
 ## Overview
 
-The Public Health Resource Tracker is a web platform designed to help individuals, donors, volunteers, and healthcare seekers connect in emergencies by sharing and requesting essential medical resources such as blood, oxygen cylinders, and medicines. It aims to streamline resource availability during health crises like dengue outbreaks, COVID-19 surges, and other urgent situations.
+The Public Health Resource Tracker is a multi-functional platform designed to connect individuals in urgent need of critical medical resources—such as blood, oxygen cylinders, and medicines—with verified donors and volunteers. Additionally, it provides real-time updates on hospital capacity and doctor availability to enable informed healthcare decisions during emergencies and public health crises.
 
 ---
 
-## Features
+## Core Features
 
-### User Roles & Capabilities
+- **Resource Listings & Requests**  
+  Users can post offers (donations) or requests for medical resources including blood, oxygen, and medicines.
 
-#### General Users (Unregistered or Logged-in)
-- Browse and search available resources by item type, blood group, location, and posting time.
-- Post resource offers (e.g., “Available O+ blood”).
-- Post urgent resource requests (e.g., “Need oxygen cylinder urgently”).
-- Flag inaccurate or outdated listings.
+- **Search & Filtering**  
+  Browse and filter listings by resource type, blood group, location, and urgency.
 
-#### Verified Donors/Volunteers
-- Create and manage donor profiles including blood type and availability.
-- View matching urgent requests within their area.
-- Respond to requests and offer help.
+- **User Roles & Permissions**  
+  Supports general users, verified donors, requesters, and admins with role-based access to features.
 
-#### Requesters (Patients or Helpers)
-- Submit detailed emergency requests with urgency indicators.
-- Receive alerts when matching donors post resources nearby.
+- **Matching & Notifications**  
+  Verified donors receive real-time alerts when matching urgent requests are posted nearby.
 
-#### Admins
-- Monitor flagged listings for accuracy and appropriateness.
-- Approve, reject, or mark listings as outdated.
-- Manage abuse reports and maintain system integrity.
+- **Flagging System & Moderation**  
+  Users can flag inaccurate or outdated listings. Admins review flags and moderate content to maintain trust.
+
+- **Automatic Listing Expiry**  
+  Listings auto-expire or become inactive after a predefined period (e.g., 48 hours) to keep information fresh.
+
+- **Verification Process**  
+  Donors and vendors submit identity or license documents which admins verify before granting access to sensitive features such as medicine listings.
 
 ---
 
-## How It Works
+## Additional Features
 
-- **Homepage:** Displays urgent resource listings and requests nearby.
-- **Search & Filter:** Users search by item, blood group, location, and urgency.
-- **Posting:** Users submit offers or requests via simple forms.
-- **Matching & Alerts:** Verified donors receive notifications of matching needs.
-- **Moderation:** Admin panel for quality control and abuse management.
-- **Auto-Expire:** Listings expire or get archived after 48 hours to keep data current.
+- **Hospital Status Updates**  
+  Displays real-time information on hospital emergency capacity, available beds, ICU slots, and critical equipment.
+
+- **Doctor Availability & Appointment Booking**  
+  Shows doctors' specialties, consultation schedules, and enables booking for in-person or telemedicine consultations.
+
+- **Integrated Emergency Support**  
+  Combines resource availability with hospital and doctor data to provide holistic emergency assistance.
+
+---
+
+## Fraud Prevention & Safety Controls
+
+- Only **verified donors and vendors** may post listings for sensitive items, especially medicines.
+
+- Admins perform **document verification** and ongoing activity monitoring.
+
+- Users are **warned about accepting medicines only from trusted sources** and listings are clearly tagged with verification status.
+
+- A **flagging mechanism** allows community-driven reporting of suspicious or outdated listings.
+
+- Listings have **automatic expiry** to reduce the risk of stale or inaccurate information.
 
 ---
 
 ## Technology Stack
 
-- **Backend:** Node.js with Express framework
-- **Database:** MySQL for relational data storage
-- **Frontend:** HTML, CSS for user interface
-- **Additional Tools:** Cron jobs or MySQL events for auto-expiration of listings
+- Backend: Node.js, Express.js  
+- Database: MySQL  
+- Frontend: HTML, CSS, JavaScript
 
 ---
 
-## Database Structure (Suggested Tables)
+## Database Overview
 
-| Table      | Purpose                                      |
-| ---------- | -------------------------------------------- |
-| `users`    | Stores user details and roles                |
-| `donors`   | Donor-specific data like blood type, area   |
-| `listings` | Available resource postings (oxygen, blood, meds) |
-| `requests` | Emergency resource needs                      |
-| `flags`    | Reports of inaccurate or outdated listings   |
-| `admins`   | Admin credentials and permissions             |
+### Key Tables
+
+| Table            | Description                                         |
+| ---------------- | ------------------------------------------------- |
+| `users`          | User information including roles and contacts.   |
+| `donors`         | Donor-specific data such as blood type, location, availability. |
+| `listings`       | Posted medical resource offers with status and timestamps. |
+| `requests`       | Emergency resource needs posted by users.         |
+| `flags`          | User-submitted reports on listings for moderation.|
+| `admins`         | Admin user credentials and permissions.           |
+| `hospitals`      | Hospital details and contacts.                      |
+| `hospital_status`| Real-time hospital capacity and equipment availability. |
+| `doctors`        | Doctor profiles, specialties, and schedules.       |
+| `appointments`   | Booking records linking users and doctors.         |
 
 ---
 
-## API Endpoints (Example)
+## Example Usage Flow
 
-| Method | Endpoint            | Description                           |
-| ------ | ------------------- | --------------------------------      |
-| GET    | `/listings`         | Fetch available resource listings     |
-| POST   | `/request`          | Submit a new emergency request        |
-| POST   | `/donate`           | Post a resource offer                 |
-| POST   | `/flag`             | Flag a listing                        |
-| POST   | `/register-donor`   | Register as a verified donor          |
-| GET    | `/matching-requests`| Get requests matching donor profile   |
-| GET    | `/admin/flags`      | Admin view of flagged listings        |
-| PUT    | `/admin/listings/approve` | Approve or reject listings      |
+1. A patient in Mirpur urgently needs an oxygen cylinder and posts a request specifying the type, location, and urgency.
+
+2. Verified donors with oxygen available in Mirpur receive an alert and can respond to the request.
+
+3. The system also shows nearby hospitals’ bed availability and doctors specializing in respiratory care.
+
+4. The patient or helper chooses the best option — contacting donors, hospitals, or doctors as needed.
+
+5. Users can flag listings if they become outdated or inaccurate; admins review these flags to maintain data integrity.
+
+---
+
+## Getting Started
+
+### Installation
+
+1. Clone the repository  
+2. Set up the MySQL database using the provided schema  
+3. Configure environment variables for database and email notifications  
+4. Run the Node.js server  
+5. Access the web interface to start using the platform
 
 ---
 
